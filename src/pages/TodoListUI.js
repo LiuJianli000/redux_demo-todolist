@@ -27,7 +27,13 @@ class TodoListUI extends Component {
           <List
             bordered
             dataSource={list}
-            renderItem={(item, index) => <List.Item onClick={() => handleDele(index)}>{item}</List.Item>}
+            renderItem={(item, index) => 
+              <List.Item 
+                onClick={() => handleDele(index)}
+              >
+                {item}
+              </List.Item>
+            }
           />
         </div>
       </div>
