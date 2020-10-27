@@ -1,7 +1,7 @@
-import { Button, Input, List } from 'antd';
 import React, { Component } from 'react';
 import store from '../store'
 import { addItemAction, changeInputAction, deleItemAction } from '../store/actions';
+import TodoListUI from './TodoListUI';
 
 class TodoList extends Component {
   constructor(props) {
@@ -28,7 +28,7 @@ class TodoList extends Component {
   }
 
   handleDele = index => {
-    const action = deleItemAction()
+    const action = deleItemAction(index)
     
     store.dispatch(action)
   }
@@ -37,25 +37,15 @@ class TodoList extends Component {
     const { inputValue, list } = this.state
     
     return ( 
-      <div style={{ margin: 10 }}>
-        <div>
-          <Input
-            placeholder='Write something...'
-            style={{ width: 300, marginRight: 10 }}
-            onChange={this.handleValueChange}
-            allowClear
-            value={inputValue}  // 如果没有 subscribe，input 输入无效
-          />
-          <Button type="primary" onClick={this.handleAdd}>Add</Button>
-        </div>
-        <div style={{ marginTop: 10, width: 300 }}>
-          <List
-            bordered
-            dataSource={list}
-            renderItem={(item, index) => <List.Item onClick={() => this.handleDele(index)}>{item}</List.Item>}
-          />
-        </div>
-      </div>
+      <>
+        <TodoListUI
+          inputValue={inputValue}
+          list={list}
+          handleValueChange={this.handleValueChange}
+          handleAdd={this.handleAdd}
+          handleDele={this.handleDele}
+        />
+      </>
      );
   }
 }
