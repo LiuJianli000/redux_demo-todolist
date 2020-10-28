@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import store from '../store'
-import { addItemAction, changeInputAction, deleItemAction, getTodoList } from '../store/actions';
+import { addItemAction, changeInputAction, deleItemAction, getMyListAction, getTodoList } from '../store/actions';
 import TodoListUI from './TodoListUI';
 
 
@@ -20,9 +20,11 @@ class TodoList extends Component {
   }
 
   fetchList = () => {
-    const action = getTodoList()
+    // const action = getTodoList()
+    const action = getMyListAction()
 
-    store.dispatch(action) 
+    // store.dispatch(action)
+    store.dispatch(action)
   }
 
   handleValueChange = e => {

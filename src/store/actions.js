@@ -1,4 +1,4 @@
-import { ADD_ITEM, CHANGE_INPUT, DELE_ITEM, GET_LIST } from "./actionTypes";
+import { ADD_ITEM, CHANGE_INPUT, DELE_ITEM, GET_LIST, GET_MY_LIST } from "./actionTypes";
 import axios from 'axios'
 
 // dispatch 中的参数
@@ -25,3 +25,6 @@ export const getTodoList = () => {
       })
   }
 }
+
+
+export const getMyListAction = () => ({ type: GET_MY_LIST })
