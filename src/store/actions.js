@@ -26,5 +26,5 @@ export const getTodoList = () => {
   }
 }
 
-
+// redux-saga，这里会运行 sagas.js 中的方法
 export const getMyListAction = () => ({ type: GET_MY_LIST })
