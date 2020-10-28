@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import store from '../store'
-import { addItemAction, changeInputAction, deleItemAction } from '../store/actions';
+import { addItemAction, changeInputAction, deleItemAction, getListAction } from '../store/actions';
 import TodoListUI from './TodoListUI';
+import axios from 'axios'
 
 class TodoList extends Component {
   constructor(props) {
@@ -12,6 +13,22 @@ class TodoList extends Component {
     }
     // console.log(store.getState()) 获取 store 里面的值
     store.subscribe(() => this.setState(store.getState()))  // 订阅 store，否则不能同步数据！！！
+  }
+
+  componentDidMount() {
+    this.fetchList()
+  }
+
+  fetchList = () => {
+    axios
+      .get('https://www.fastmock.site/mock/e6514194ff79c9dbcf5d721d3dc7b5d1/todo-list/get-list')
+      .then(res => {
+        // console.log(res)
+        const data = res.data
+        const action = getListAction(data)
+
+        store.dispatch(action)
+      })
   }
 
   handleValueChange = e => {

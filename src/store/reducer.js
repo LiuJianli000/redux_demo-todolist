@@ -1,13 +1,9 @@
-import { ADD_ITEM, CHANGE_INPUT, DELE_ITEM } from "./actionTypes"
+import { ADD_ITEM, CHANGE_INPUT, DELE_ITEM, GET_LIST } from "./actionTypes"
 
 /* eslint-disable import/no-anonymous-default-export */
 const defaultStore = {
   inputValue: '',
-  list: [
-    '早8点开晨会，分配今天的代码任务',
-    '早9点和项目经理开需求沟通会',
-    '早10点开始今天的需求任务开发'
-  ]
+  list: []
 }
 
 export default (state = defaultStore, action) => {
@@ -36,6 +32,16 @@ export default (state = defaultStore, action) => {
       const newState = {...state}
 
       newState.list.splice(action.index, 1)
+
+      return {
+        ...state,
+        list: newState.list
+      }
+    }
+    case GET_LIST: {
+      const newState = {...state}
+
+      newState.list = action.data.data.list
 
       return {
         ...state,
