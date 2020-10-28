@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import store from '../store'
-import { addItemAction, changeInputAction, deleItemAction, getListAction } from '../store/actions';
+import { addItemAction, changeInputAction, deleItemAction, getTodoList } from '../store/actions';
 import TodoListUI from './TodoListUI';
-import axios from 'axios'
+
 
 class TodoList extends Component {
   constructor(props) {
@@ -20,15 +20,9 @@ class TodoList extends Component {
   }
 
   fetchList = () => {
-    axios
-      .get('https://www.fastmock.site/mock/e6514194ff79c9dbcf5d721d3dc7b5d1/todo-list/get-list')
-      .then(res => {
-        // console.log(res)
-        const data = res.data
-        const action = getListAction(data)
+    const action = getTodoList()
 
-        store.dispatch(action)
-      })
+    store.dispatch(action) 
   }
 
   handleValueChange = e => {
